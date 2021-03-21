@@ -1,0 +1,34 @@
+<%- include('partials/_header') %>
+<div class="col-md-5">
+	<div class="card">
+		<div class="card-body">
+			<h5 class="card-title">Nota</h5>
+			<form method="POST" action="/update/<%=task._id%>">
+				<div class="form-group">
+					<label for="my-input">Inserta tu nota</label>
+					<input
+						class="form-control"
+						type="text"
+						name="title"
+						placeholder="Insert a Title"
+						value="<%= task.title%>"
+					/>
+					<div class="form-group">
+						<textarea
+							name="description"
+							cols="80"
+							class="form-control"
+							placeholder="Insert a description"
+						>
+<%=task.description%></textarea
+						>
+					</div>
+					<button type="submit" class="btn btn-primary btn-block">
+						Update
+					</button>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+<%- include('partials/_footer') %>

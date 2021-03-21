@@ -1,0 +1,65 @@
+<%- include('partials/_header') %>
+<div class="container">
+	<div class="row">
+		<div class="col-md-3">
+			<div class="card">
+				<div class="card-body">
+					<h5 class="card-title">Web Tools</h5>
+					<p class="card-text">Choose your tool and target</p>
+					<form method="POST" action="/webtools/webaction">
+						<div class="form-group">
+							<label for="tool">Tool</label>
+							<select id="tool" class="form-control" name="tool">
+								<option>Ip Config</option>
+								<option>Ping</option>
+								<option>Trace Route</option>
+								<option>Route Table</option>
+								<option>NSLOOKUP</option>
+							</select>
+							<label for="ip">Destinatation IP</label>
+							<input class="form-control" type="text" name="ip" id="ip" />
+						</div>
+						<button type="submit" class="btn btn-success">Enviar</button>
+					</form>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-9">
+			<table class="table table-bordered table-hover">
+				<thead>
+					<tr>
+						<th>
+							No.
+						</th>
+						<th>Date</th>
+						<th>Tool</th>
+						<th>IP</th>
+						<th>Status</th>
+						<th>Result</th>
+					</tr>
+					<tbody>
+						<% for (let i = webactions.length-1; i >= (webactions.length)-5; i--){ %>
+							<tr>
+								<td><%= i + 1%></td>
+								<td><%= webactions[i].date %></td>
+								<td><%= webactions[i].tool %></td>
+								<td><%= webactions[i].ip %></td>
+								<td>
+									<label 
+										class="<%= webactions[i].status ? 'text-success' : 'text-danger' %>"><%= webactions[i].status ? "Sucess" : "Failed" %></labbbel>
+								</td>
+								<td>
+									<div style="white-space: pre-wrap;">
+									<%= webactions[i].result%>
+									</div>
+								</td>
+							</tr>
+						<% } %>
+					</tbody>
+				</thead>
+			</table>
+		</div>
+	</div>
+</div>
+
+<%- include ('partials/_footer')%>

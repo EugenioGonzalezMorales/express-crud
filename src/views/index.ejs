@@ -1,0 +1,66 @@
+<%- include('partials/_header') %>
+<div class="container">
+	<div class="row">
+		<!--FORM-->
+		<div class="col-md-5">
+			<div class="card">
+				<div class="card-body">
+					<h5 class="card-title">Nota</h5>
+					<form method="POST" action="/add">
+						<div class="form-group">
+							<label for="my-input">Inserta tu nota</label>
+							<input
+								class="form-control"
+								type="text"
+								name="title"
+								placeholder="Insert a Title"
+							/>
+							<div class="form-group">
+								<textarea
+									name="description"
+									cols="80"
+									class="form-control"
+									placeholder="Insert a description"
+								></textarea>
+							</div>
+							<button type="submit" class="btn btn-primary btn-block">
+								Add
+							</button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+		<!--LIST-->
+		<div class="col-md-7">
+			<table class="table table-bordered table-hover">
+				<thead>
+					<tr>
+						<th>
+							No.
+						</th>
+						<th>Title</th>
+						<th>Description</th>
+						<th>Operation</th>
+					</tr>
+					<tbody>
+						<% for (let i = 0; i < tasks.length; i++){ %>
+							<tr>
+								<td><%= i + 1%></td>
+								<td><%= tasks[i].title %></td>
+								<td><%= tasks[i].description %></td>
+								<td>
+									<a href="/turn/<%= tasks[i]._id %>" 
+										class="btn <%= tasks[i].status ? 'btn-success' : 'btn-dark' %>">Done</a>
+									<a href="/delete/<%= tasks[i]._id %>" class="btn btn-danger">Delete</a>
+									<a href="/update/<%= tasks[i]._id %>" class="btn btn-info">Edit</a>
+								</td>
+							</tr>
+						<% } %>
+					</tbody>
+				</thead>
+			</table>
+		</div>
+	</div>
+</div>
+<%- include('partials/_footer') %>

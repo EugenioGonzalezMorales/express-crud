@@ -1,0 +1,3 @@
+src/views/partials/_header.ejs
+src/views/partials/_footer.ejs
+src/views/index.ejs
